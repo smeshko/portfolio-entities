@@ -1,6 +1,6 @@
 import Foundation
 
-public struct Portfolio {
+public struct Portfolio: Codable {
     public let fetchDate: Date
     public let imagePath: String
     public let name: String
@@ -20,7 +20,7 @@ public struct Portfolio {
     }
 }
 
-public struct Skills {
+public struct Skills: Codable {
     public let advanced: [Skill]
     public let intermediate: [Skill]
     public let devEnvironment: [Skill]
@@ -32,7 +32,7 @@ public struct Skills {
     }
 }
 
-public struct Skill {
+public struct Skill: Codable {
     public let name: String
     public let image: String
 
@@ -42,7 +42,7 @@ public struct Skill {
     }
 }
 
-public struct Education {
+public struct Education: Codable {
     public let period: String
     public let degree: String
     public let university: String
@@ -56,7 +56,7 @@ public struct Education {
     }
 }
 
-public struct ExperiencePreview {
+public struct ExperiencePreview: Codable {
     public let id: Int
     public let position: String
     public let company: String
@@ -72,8 +72,8 @@ public struct ExperiencePreview {
     }
 }
 
-public struct Experience {
-    public struct Project {
+public struct Experience: Codable {
+    public struct Project: Codable {
         public let name: String
         public let description: String
         public let technologies: [String]
