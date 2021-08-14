@@ -1,38 +1,63 @@
 import Foundation
 
-public struct Portfolio: Codable {
+public struct PortfolioDto: Codable {
     public let fetchDate: Date
     public let imagePath: String
     public let name: String
     public let description: String
-    public let skills: Skills
-    public let education: [Education]
-    public let experience: [ExperiencePreview]
+    public let social: SocialDto
+    public let skills: SkillsDto
+    public let education: [EducationDto]
+    public let experience: [ExperiencePreviewDto]
 
-    public init(fetchDate: Date, imagePath: String, name: String, description: String, skills: Skills, education: [Education], experience: [ExperiencePreview]) {
+    public init(
+        fetchDate: Date,
+        imagePath: String,
+        name: String,
+        description: String,
+        social: SocialDto,
+        skills: SkillsDto,
+        education: [EducationDto],
+        experience: [ExperiencePreviewDto]
+    ) {
         self.fetchDate = fetchDate
         self.imagePath = imagePath
         self.name = name
         self.description = description
+        self.social = social
         self.skills = skills
         self.education = education
         self.experience = experience
     }
 }
 
-public struct Skills: Codable {
-    public let advanced: [Skill]
-    public let intermediate: [Skill]
-    public let devEnvironment: [Skill]
+public struct SocialDto: Codable {
+    public let linkedIn: String
+    public let github: String
+    public let blog: String
+    public let email: String
 
-    public init(advanced: [Skill], intermediate: [Skill], devEnvironment: [Skill]) {
+    public init(linkedIn: String, github: String, blog: String, email: String) {
+        self.linkedIn = linkedIn
+        self.github = github
+        self.blog = blog
+        self.email = email
+    }
+}
+
+public struct SkillsDto: Codable {
+    public let advanced: [SkillDto]
+    public let intermediate: [SkillDto]
+    public let devEnvironment: [SkillDto]
+
+    public init(advanced: [SkillDto], intermediate: [SkillDto], devEnvironment: [SkillDto]) {
         self.advanced = advanced
         self.intermediate = intermediate
         self.devEnvironment = devEnvironment
     }
 }
 
-public struct Skill: Codable {
+public struct SkillDto: Codable {
     public let name: String
     public let image: String
 
@@ -42,7 +67,7 @@ public struct Skill: Codable {
     }
 }
 
-public struct Education: Codable {
+public struct EducationDto: Codable {
     public let period: String
     public let degree: String
     public let university: String
@@ -56,7 +81,7 @@ public struct Education: Codable {
     }
 }
 
-public struct ExperiencePreview: Codable {
+public struct ExperiencePreviewDto: Codable {
     public let id: Int
     public let position: String
     public let company: String
@@ -72,8 +97,8 @@ public struct ExperiencePreview: Codable {
     }
 }
 
-public struct Experience: Codable {
-    public struct Project: Codable {
+public struct ExperienceDto: Codable {
+    public struct ProjectDto: Codable {
         public let name: String
         public let description: String
         public let technologies: [String]
@@ -92,9 +117,18 @@ public struct Experience: Codable {
     public let location: String
     public let description: String
     public let technologies: [String]
-    public let projects: [Project]
+    public let projects: [ProjectDto]
 
-    public init(id: Int, period: String, position: String, company: String, location: String, description: String, technologies: [String], projects: [Experience.Project]) {
+    public init(
+        id: Int,
+        period: String,
+        position: String,
+        company: String,
+        location: String,
+        description: String,
+        technologies: [String],
+        projects: [ExperienceDto.ProjectDto]
+    ) {
         self.id = id
         self.period = period
         self.position = position
