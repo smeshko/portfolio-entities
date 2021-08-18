@@ -2,7 +2,7 @@ import Foundation
 
 public struct PortfolioDto: Codable {
     public let fetchDate: Date
-    public let imagePath: String
+    public let image: ImageDto
     public let name: String
     public let description: String
     public let social: SocialDto
@@ -12,7 +12,7 @@ public struct PortfolioDto: Codable {
 
     public init(
         fetchDate: Date,
-        imagePath: String,
+        image: ImageDto,
         name: String,
         description: String,
         social: SocialDto,
@@ -21,7 +21,7 @@ public struct PortfolioDto: Codable {
         experience: [ExperiencePreviewDto]
     ) {
         self.fetchDate = fetchDate
-        self.imagePath = imagePath
+        self.image = image
         self.name = name
         self.description = description
         self.social = social
@@ -59,11 +59,21 @@ public struct SkillsDto: Codable {
 
 public struct SkillDto: Codable {
     public let name: String
-    public let image: String
+    public let image: ImageDto
 
-    public init(name: String, image: String) {
+    public init(name: String, image: ImageDto) {
         self.name = name
         self.image = image
+    }
+}
+
+public struct ImageDto: Codable {
+    public let imageKeyLight: String
+    public let imageKeyDark: String
+
+    public init(imageKeyLight: String, imageKeyDark: String) {
+        self.imageKeyLight = imageKeyLight
+        self.imageKeyDark = imageKeyDark
     }
 }
 
